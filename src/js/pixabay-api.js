@@ -9,7 +9,7 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { createGallery, clearGallery, showLoader, hideLoader } from './render-function.js'
 import { gallery } from '../main.js';
-const apiKey ='50744753-f362bf6174861c1f1e53027f5'
+const apiKey =''
 function getImagesByQuery(query) {
     axios.get(`https://pixabay.com/api/?key=${apiKey}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`)
         .then(response => {
