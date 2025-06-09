@@ -1,5 +1,5 @@
 import { getImagesByQuery } from './js/pixabay-api.js';
-import { clearGallery, gallery, loader } from './js/render-functions.js';
+import { clearGallery,} from './js/render-functions.js';
 
 const input = document.querySelector('[name="search-text"]');
 const form = document.querySelector('.form');
@@ -12,6 +12,10 @@ input.addEventListener('blur', () => {
 });
 
 form.addEventListener('submit', event => {
+  if (input.value.trim() === "") {
+    alert("Please, write in photo name")
+    return;
+  }
   event.preventDefault();
   clearGallery();
   getImagesByQuery(input.value.trim());
