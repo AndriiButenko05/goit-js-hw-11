@@ -1,6 +1,9 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-import { gallery,loader } from '../main.js';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+export const gallery = document.querySelector('.gallery');
+export const loader = document.querySelector('.loader');
+
 export function createGallery(images) {
   return images
     .map(item => {
@@ -35,13 +38,20 @@ export function createGallery(images) {
     })
     .join('');
 }
+
 export function clearGallery() {
   gallery.innerHTML = '';
 }
-export function showLoader() {
-  loader.style.overflow = "visible";
 
+export function showLoader() {
+  loader.style.display = 'block';
 }
+
 export function hideLoader() {
-  loader.style.overflow = "hidden";
+  loader.style.display = 'none';
 }
+
+export const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
