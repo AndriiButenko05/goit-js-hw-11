@@ -7,7 +7,7 @@ import {
   gallery,
   hideLoader,
   lightbox,
-} from './render-function.js';
+} from './render-functions.js';
 
 const apiKey = '50744753-f362bf6174861c1f1e53027f5';
 

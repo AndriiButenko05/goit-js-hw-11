@@ -1,5 +1,5 @@
 import { getImagesByQuery } from './js/pixabay-api.js';
-import { clearGallery, gallery, loader } from './js/render-function.js';
+import { clearGallery, gallery, loader } from './js/render-functions.js';
 
 const input = document.querySelector('[name="search-text"]');
 const form = document.querySelector('.form');
