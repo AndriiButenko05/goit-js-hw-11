@@ -1,5 +1,7 @@
 import { getImagesByQuery } from './js/pixabay-api.js';
-import { clearGallery,} from './js/render-functions.js';
+import { clearGallery, } from './js/render-functions.js';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const input = document.querySelector('[name="search-text"]');
 const form = document.querySelector('.form');
@@ -12,11 +14,15 @@ input.addEventListener('blur', () => {
 });
 
 form.addEventListener('submit', event => {
+  event.preventDefault();
   if (input.value.trim() === "") {
-    alert("Please, write in photo name")
+    iziToast.show({
+      message: 'Please, write correct name of photo',
+      position: 'topRight',
+      color: 'red',
+    });
     return;
   }
-  event.preventDefault();
   clearGallery();
   getImagesByQuery(input.value.trim());
   form.reset();

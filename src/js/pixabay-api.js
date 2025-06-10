@@ -15,7 +15,7 @@ export function getImagesByQuery(query) {
   showLoader();
   const formattedQuery = `"${query}"`;
   const encodedQuery = encodeURIComponent(formattedQuery);
-  axios
+  return axios
     .get(
       `https://pixabay.com/api/?key=${apiKey}&q=${encodedQuery}&image_type=photo&orientation=horizontal&safesearch=true`
     )
