@@ -34,7 +34,14 @@ export function getImagesByQuery(query) {
       gallery.insertAdjacentHTML('beforeend', elements);
       lightbox.refresh();
     })
-    .catch(error => {})
+    .catch(error => {
+      iziToast.show({
+        message:
+          `Sorry, something went wrong: ${error}`,
+        position: 'topRight',
+        color: 'red',
+      });
+    })
     .finally(() => {
       hideLoader();
     });
