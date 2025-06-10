@@ -6,8 +6,17 @@ export const loader = document.querySelector('.loader');
 
 export function createGallery(images) {
   return images
-    .map(({largeImageURL,webformatURL,tags,likes,views,comments,downloads}) => {
-      return `<li class="gallery-item">
+    .map(
+      ({
+        largeImageURL,
+        webformatURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => {
+        return `<li class="gallery-item">
         <a class="gallery-link" href="${largeImageURL}">
         <img
       class="gallery-image"
@@ -35,7 +44,8 @@ export function createGallery(images) {
   </div>
   </div>
 </li>`;
-    })
+      }
+    )
     .join('');
 }
 
@@ -56,17 +66,3 @@ export const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
-export function waitForImagesToLoad(container) {
-  const images = container.querySelectorAll('img');
-  const promises = [];
-
-  images.forEach(img => {
-    if (img.complete) return;
-    const promise = new Promise(resolve => {
-      img.addEventListener('load', resolve);
-      img.addEventListener('error', resolve);
-    });
-    promises.push(promise);
-  });
-  return Promise.all(promises);
-}
