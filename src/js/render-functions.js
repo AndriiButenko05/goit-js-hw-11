@@ -6,32 +6,32 @@ export const loader = document.querySelector('.loader');
 
 export function createGallery(images) {
   return images
-    .map(item => {
+    .map(({largeImageURL,webformatURL,tags,likes,views,comments,downloads}) => {
       return `<li class="gallery-item">
-        <a class="gallery-link" href="${item.largeImageURL}">
+        <a class="gallery-link" href="${largeImageURL}">
         <img
       class="gallery-image"
-      src="${item.webformatURL}"
-      data-source="${item.largeImageURL}"
-      alt="${item.tags}"
+      src="${webformatURL}"
+      data-source="${largeImageURL}"
+      alt="${tags}"
     />
   </a>
   <div class="text-container">
   <div class="container-for-desc">
   <h3 class="img-heading">Likes</h3>
-  <p class="img-text">${item.likes}</p>
+  <p class="img-text">${likes}</p>
   </div>
   <div class="container-for-desc">
   <h3 class="img-heading">Views</h3>
-  <p class="img-text">${item.views}</p>
+  <p class="img-text">${views}</p>
   </div>
   <div class="container-for-desc">
   <h3 class="img-heading">Comments</h3>
-  <p class="img-text">${item.comments}</p>
+  <p class="img-text">${comments}</p>
   </div>
   <div class="container-for-desc">
   <h3 class="img-heading">Downloads</h3>
-  <p class="img-text">${item.downloads}</p>
+  <p class="img-text">${downloads}</p>
   </div>
   </div>
 </li>`;
@@ -55,3 +55,18 @@ export const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+
+export function waitForImagesToLoad(container) {
+  const images = container.querySelectorAll('img');
+  const promises = [];
+
+  images.forEach(img => {
+    if (img.complete) return;
+    const promise = new Promise(resolve => {
+      img.addEventListener('load', resolve);
+      img.addEventListener('error', resolve);
+    });
+    promises.push(promise);
+  });
+  return Promise.all(promises);
+}
